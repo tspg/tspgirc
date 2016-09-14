@@ -202,7 +202,7 @@
     <mkdir dir="${artifact.temp.output.tspgirc:jar}"/>
     <jar destfile="${temp.jar.path.TSPGIRC.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
       <zipfileset dir="${tspgirc.output.dir}"/>
-      <zipfileset src="${basedir}/../../../dev/spigot/build/Spigot/Spigot-API/target/spigot-api-1.10.2-R0.1-SNAPSHOT-shaded.jar"/>
+      <zipfileset src="/home/jenkins/lib/spigot-api-1.10.2-R0.1-SNAPSHOT-shaded.jar"/>
     </jar>
     <copy file="${temp.jar.path.TSPGIRC.jar}" tofile="${artifact.temp.output.tspgirc:jar}/TSPGIRC.jar"/>
   </target>
