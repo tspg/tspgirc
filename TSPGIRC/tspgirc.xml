@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tspgirc" default="all">
+  
+  
+  <property file="tspgirc.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.ane"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.spigot-api-1.10.2-r0.1-snapshot-shaded.classpath">
+    <pathelement location="${basedir}/../../../dev/spigot/build/Spigot/Spigot-API/target/spigot-api-1.10.2-R0.1-SNAPSHOT-shaded.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module TSPGIRC -->
+  
+  <dirname property="module.tspgirc.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.tspgirc" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.tspgirc" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.tspgirc" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.tspgirc" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="tspgirc.output.dir" value="${module.tspgirc.basedir}/../../../production/TSPGIRC"/>
+  <property name="tspgirc.testoutput.dir" value="${module.tspgirc.basedir}/../../../test/TSPGIRC"/>
+  
+  <path id="tspgirc.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="tspgirc.module.production.classpath">
+    <path refid="${module.jdk.classpath.tspgirc}"/>
+    <path refid="library.spigot-api-1.10.2-r0.1-snapshot-shaded.classpath"/>
+  </path>
+  
+  <path id="tspgirc.runtime.production.module.classpath">
+    <pathelement location="${tspgirc.output.dir}"/>
+    <path refid="library.spigot-api-1.10.2-r0.1-snapshot-shaded.classpath"/>
+  </path>
+  
+  <path id="tspgirc.module.classpath">
+    <path refid="${module.jdk.classpath.tspgirc}"/>
+    <pathelement location="${tspgirc.output.dir}"/>
+    <path refid="library.spigot-api-1.10.2-r0.1-snapshot-shaded.classpath"/>
+  </path>
+  
+  <path id="tspgirc.runtime.module.classpath">
+    <pathelement location="${tspgirc.testoutput.dir}"/>
+    <pathelement location="${tspgirc.output.dir}"/>
+    <path refid="library.spigot-api-1.10.2-r0.1-snapshot-shaded.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.tspgirc">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.tspgirc">
+    <patternset refid="excluded.from.module.tspgirc"/>
+  </patternset>
+  
+  <path id="tspgirc.module.sourcepath">
+    <dirset dir="${module.tspgirc.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.tspgirc" depends="compile.module.tspgirc.production,compile.module.tspgirc.tests" description="Compile module TSPGIRC"/>
+  
+  <target name="compile.module.tspgirc.production" description="Compile module TSPGIRC; production classes">
+    <mkdir dir="${tspgirc.output.dir}"/>
+    <javac destdir="${tspgirc.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.tspgirc}/javac">
+      <compilerarg line="${compiler.args.tspgirc}"/>
+      <bootclasspath refid="tspgirc.module.bootclasspath"/>
+      <classpath refid="tspgirc.module.production.classpath"/>
+      <src refid="tspgirc.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.tspgirc"/>
+    </javac>
+    
+    <copy todir="${tspgirc.output.dir}">
+      <fileset dir="${module.tspgirc.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.tspgirc.tests" depends="compile.module.tspgirc.production" description="compile module TSPGIRC; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.tspgirc" description="cleanup module">
+    <delete dir="${tspgirc.output.dir}"/>
+    <delete dir="${tspgirc.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.tspgirc" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.tspgirc" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.tspgirc:jar" value="${basedir}/out/artifacts/TSPGIRC_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.TSPGIRC.jar" value="${artifacts.temp.dir}/TSPGIRC.jar"/>
+  </target>
+  
+  <target name="artifact.tspgirc:jar" depends="init.artifacts, compile.module.tspgirc" description="Build &#39;TSPGIRC:jar&#39; artifact">
+    <property name="artifact.temp.output.tspgirc:jar" value="${artifacts.temp.dir}/TSPGIRC_jar"/>
+    <mkdir dir="${artifact.temp.output.tspgirc:jar}"/>
+    <jar destfile="${temp.jar.path.TSPGIRC.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${tspgirc.output.dir}"/>
+      <zipfileset src="${basedir}/../../../dev/spigot/build/Spigot/Spigot-API/target/spigot-api-1.10.2-R0.1-SNAPSHOT-shaded.jar"/>
+    </jar>
+    <copy file="${temp.jar.path.TSPGIRC.jar}" tofile="${artifact.temp.output.tspgirc:jar}/TSPGIRC.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.tspgirc:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.tspgirc:jar}"/>
+    <copy todir="${artifact.output.tspgirc:jar}">
+      <fileset dir="${artifact.temp.output.tspgirc:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
