@@ -1,0 +1,11 @@
+name: "TSPGIRC"
+version: 1.0
+author: "The Sentinel's Playground"
+main: net.allfearthesentinel.spigot.irc.Plugin
+commands:
+  irc:
+    description: Controls the TSPGIRC plugin.
+    usage: See /irc help.
+  me:
+    description: Perform an action.
+    usage: /me <action>
