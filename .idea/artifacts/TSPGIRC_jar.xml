@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="TSPGIRC:jar">
+    <output-path>$USER_HOME$/dev/spigot/plugins</output-path>
+    <root id="archive" name="TSPGIRC.jar">
+      <element id="module-output" name="TSPGIRC" />
+      <element id="extracted-dir" path="$USER_HOME$/dev/spigot/build/Spigot/Spigot-API/target/spigot-api-1.10.2-R0.1-SNAPSHOT-shaded.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
